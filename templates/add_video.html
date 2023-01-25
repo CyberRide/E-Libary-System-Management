@@ -1,0 +1,61 @@
+{% extends 'admin_layout.html' %}
+{% block title%}Add Video{% endblock %}
+{% block content %}
+
+<div class="container" style="max-width: 800px;">
+    <form class='text-center mt-5' action='/add/video' method='POST' enctype="multipart/form-data">
+      {% for message in get_flashed_messages() %}
+        <div class='alert alert-warning'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          {{message}}
+        </div>
+      {% endfor %}
+    <h1 class='display-4 text-center'>Add Video</h1><br>
+    <div class="input-group mb-3">
+         <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-video-camera"></i></span>
+         </div>
+         <input type="text" class="form-control" placeholder="Title" name="title" required autofocus>
+    </div>
+    <div class="input-group mb-3">
+     <div class="input-group-prepend">
+     <span class="input-group-text"><i class="fa fa-file"></i></span>
+     </div>
+     <button  onclick="document.getElementById('file1').click()" class="form-control">Upload Thumbnail</button>
+     <input type="file" name="file1" id="file1" class="form-control" required style="display: none;">
+     </div>
+    <div class="input-group mb-3">
+         <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-tags"></i></span>
+         </div>
+         <select name="category_id" class="form-control" placeholder="Category" required>
+              {% for category in categories %}
+                   <option value="" disabled selected hidden>Category</option>
+                   <option value="{{ category[1] }}">{{ category[1] }}</option>
+              {% endfor %}
+         </select>
+    </div>
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="fa fa-video-camera"></i></span>
+    </div>
+    <button  onclick="document.getElementById('file').click()" class="form-control">Upload Video</button>
+    <input type="file" name="file" title="Chose a video" id="file" class="form-control" style="display:none" required>
+    </div>
+    <textarea name="description" class="form-control mb-3" cols="30" rows="2" required
+              placeholder="Video Description"></textarea>
+              <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fa fa-download"></i></span>
+               </div>
+               <select name="download_permission" class="form-control" required>
+                   <option value="1" {% if video[5] %}selected{% endif %}>Allowed</option>
+                   <option value="0" {% if
+           not video[5] %}selected{% endif %}>Not Allowed</option>
+           </select>
+           
+           </div>
+    <button class='btn btn-lg btn-primary btn-block' type='submit'>Submit</button>
+</form>
+</div>
+{% endblock %}

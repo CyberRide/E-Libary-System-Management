@@ -1,0 +1,41 @@
+{% extends 'admin_layout.html' %}
+{% block title%}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 800px;">
+    <form class='text-center mt-5' action='/add/books' method='POST' enctype="multipart/form-data">
+      {% for message in get_flashed_messages() %}
+        <div class='alert alert-warning'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          {{message}}
+        </div>
+      {% endfor %}
+<div class="table-responsive">
+<table class="table table-striped table-hover">
+   <thead class="thead-light">
+   <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Category</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Date Added</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for video in video %}
+        <tr>
+            <td class="text-center col-3">{{ video[0] }}</td>
+            <td class="text-center col-3">{{ video[1] }}</td>
+            <td class="text-center col-3">{{ video[3] }}</td>
+            <td class="text-center col-3">{{ video[4] }}</td>
+            <td class="text-center col-3">{{ video[5] }}</td>
+            <td class="text-center col-3">
+                <a href="/edit/video/{{ video[0] }}" class="btn btn-danger">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

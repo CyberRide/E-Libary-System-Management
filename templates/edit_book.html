@@ -1,0 +1,74 @@
+{% extends 'admin_layout.html' %}
+{% block title %}Edit Book{% endblock %}
+{% block content %}
+
+<form class='text-center mt-5 container' style="width: 60%;" action='/edit/book/{{book[0]}}' method='POST' enctype="multipart/form-data">
+     {% for message in get_flashed_messages() %}
+     <div class='alert alert-warning'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          {{message}}
+     </div>
+     {% endfor %}
+     <h1 class='display-4 text-center'>Edit Book</h1><br>
+     <div class="input-group mb-3">
+          <div class="input-group-prepend">
+               <span class="input-group-text"><i class="fa fa-book"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Title" name="title" value="{{book[1]}}" required autofocus>
+     </div>
+     <div class="input-group mb-3">
+          <div class="input-group-prepend">
+               <span class="input-group-text"><i class="fa fa-user"></i></span>
+          </div>
+          <input type="text" class="form-control" name='author' placeholder="Author" value="{{book[2]}}" required>
+     </div>
+     <div class="input-group mb-3">
+          <div class="input-group-prepend">
+               <span class="input-group-text"><i class="fa fa-list"></i></span>
+          </div>
+          <select name="category_id" class="form-control" required>
+            {% for category in categories %}
+            <option value="{{ category[0] }}" {% if category[0] == book.category_id %} selected {% endif %}>
+                {{ category[1] }}</option>
+{% endfor %}
+</select>
+</div>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="fa fa-file"></i></span>
+</div>
+<input type="text" class="form-control" name='publisher' placeholder="Publisher" value="{{ book[4] }}" required>
+</div>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="fa fa-list"></i></span>
+</div>
+<select name="book_type" class="form-control" required>
+{% for book_type in book_types %}
+<option value="{{ book_type[0] }}" {% if book_type[0] == book.book_type %} selected {% endif %}>{{ book_type[1] }}</option>
+{% endfor %}
+</select>
+</div>
+<textarea name="description" class="form-control mb-3" cols="30" rows="2" required
+                     placeholder="Book Description">{{ book[3] }}</textarea>
+                     <div class="input-group mb-3">
+                         <div class="input-group-prepend">
+                             <span class="input-group-text"><i class="fa fa-download"></i></span>
+                         </div>
+                         <select name="download_permission" class="form-control" required>
+                             <option value="1" {% if book[7] %}selected{% endif %}>Allowed</option>
+                             <option value="0" {% if
+                     not book[7] %}selected{% endif %}>Not Allowed</option>
+                     </select>
+                     <div class="input-group mb-3">
+                         <div class="input-group-prepend">
+                         <span class="input-group-text"><i class="fa fa-file"></i></span>
+                         </div>
+                         <button  onclick="document.getElementById('file1').click()" class="form-control">Upload Thumbnail</button>
+                         <input type="file" name="file1" id="file1" class="form-control" required>
+                         </div>
+                     
+                     </div>
+<button class='btn btn-lg btn-primary btn-block' type='submit'>Save Changes</button>
+</form>
+{% endblock %}

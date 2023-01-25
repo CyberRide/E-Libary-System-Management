@@ -1,0 +1,111 @@
+{% extends 'admin_layout.html' %}
+{% block title%}Admin Dashboard{% endblock %}
+{% block content %}
+<style>
+    
+    @media (max-width: 576px) {
+  .col-md-6 {
+    padding-bottom: 20px;
+  }
+}
+
+</style>
+<div class="container">
+    <h1 class="text-center my-5">Admin Dashboard</h1>
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Books</h5>
+                    <p class="card-text">{{ total_books }}</p>
+                    <a href="/listbooks" class="btn btn-light">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Videos</h5>
+                    <p class="card-text">{{ total_video }}</p>
+                    <a href="/listvideos" class="btn btn-light">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">{{ total_users }}</p>
+                    <a href="#" class="btn btn-light">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Categories</h5>
+                    <p class="card-text">{{ total_categories }}</p>
+                    <a href="/categories" class="btn btn-light">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Books</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Date Added</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in recent_books %}
+                            <tr>
+                            <td>{{ book[1] }}</td>
+                            <td>{{ book[2] }}</td>
+                            <td>{{ book[8]}}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">Recent Users</h5>
+                            <table class="table">
+                            <thead>
+                            <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Date Joined</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in recent_users %}
+                            <tr>
+                            <td>{{ user[2] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>{{ user[6] }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            
+                            </div>
+                            {% endblock %}
+                            
+                            
+                            
+                            

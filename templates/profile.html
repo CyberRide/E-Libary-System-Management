@@ -1,0 +1,39 @@
+{% if current_user[5] == 1 %}
+    {% extends 'admin_layout.html' %}
+{% else %}
+    {% extends 'withlogin.html' %}
+{% endif %}
+{% block title%}Profile{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 800px;">
+    <form class='text-center mt-5' action='/add/books' method='POST' enctype="multipart/form-data">
+      {% for message in get_flashed_messages() %}
+        <div class='alert alert-warning'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          {{message}}
+        </div>
+      {% endfor %}
+     <h1 class='display-4 text-center'>Profile</h1><br>
+     <div class="input-group mb-3">
+          <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Full Name" name="name" value="{{current_user[1]}}" required autofocus>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" name="username" value="{{current_user[2]}}" required autofocus>
+    </div>
+     <div class="input-group mb-3">
+         <div class="input-group-prepend">
+             <span class="input-group-text"><i class="fa fa-at"></i></span>
+         </div>
+         <input type="email" class="form-control" placeholder="Email" name="email" value="{{current_user[3]}}" required >
+     </div>
+     <button type="submit" class="btn btn-primary" name='submit'>Update</button>
+     <a href='/changepassword' class='btn btn-warning'>Change Password</a>
+</form>
+</div>
+{% endblock %}

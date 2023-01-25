@@ -1,0 +1,68 @@
+{% extends 'withoutlogin.html' %}
+{% block title%}Register{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center display-4">Register</h1>
+    <p class="text-center lead">Enter your details to create an account</p>
+    <hr class="my-4">
+    <form action="/register" method="POST">
+    {% for message in get_flashed_messages() %}
+    <div class='alert alert-warning'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        {{message}}
+    </div>
+    {% endfor %}
+    <div class="form-group">
+        <label for="full_name">Full Name:</label>
+        <input type="text" class="form-control" id="full_name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="full_name">User Name:</label>
+        <input type="text" class="form-control" id="full_name" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fa fa-eye-slash password-toggle" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="confirm_password">Confirm Password:</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fa fa-eye-slash password-toggle" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+<script>
+$(document).ready(function(){
+    $('.password-toggle').click(function(){
+        var input = $(this).parent().parent().find('input');
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+            $(this).removeClass('fa-eye-slash');
+            $(this).addClass('fa-eye');
+        } else {
+            input.attr("type", "password");
+            $(this).removeClass('fa-eye');
+            $(this).addClass('fa-eye-slash');
+        }
+    });
+});
+</script>
+{% endblock %}

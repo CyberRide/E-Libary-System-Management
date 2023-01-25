@@ -1,0 +1,28 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <h1 class="text-center">Report of Books</h1>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">Category</th>
+          <th class="text-center">Book Name</th>
+          <th class="text-center">Author</th>
+          <th class="text-center">Publisher</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td class="text-center">{{ book[5] }}</td>
+          <td class="text-center">{{ book[1] }}</td>
+          <td class="text-center">{{ book[3] }}</td>
+          <td class="text-center">{{ book[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'withlogin.html' %}
+{% block title%}Videos{% endblock %}
+{% block content %}
+
+<section class="py-5">
+     <div class="container" style="background-color: transparent;">
+          <div class="row">
+              {% for video in video %}
+              <div class="col-md-3">
+                  <div class="card-custom">
+                      <img src="{{url_for('static', filename='upload/Thumbnail/'+video[7]) }}" alt="Book thumbnail" class="card-img-top-custom">
+                      <div class="card-body-custom">
+                          <h5 class="card-title-custom"> <a href="{{ url_for('view_video', id=video[0]) }}" >{{ video[1] }}</a></h5>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+      
+</section>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "withoutlogin.html" %}
+{% block title%}Home{% endblock %}
+{% block nav %}
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend" >
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+    </div>
+    <input type="search" class="form-control" placeholder="Search books" id="search" autofocus>
+</div>
+{% endblock %}
+{% block content %}
+<div class="text-center mt-5 container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{message}}
+    </div>
+    {% endfor %}
+    <h1 class="display-4">Welcome to E-Library Management System</h1>
+    {% if books %}
+<hr class="d-block d-sm-none" />
+<h1 class="display-4 text-center d-none d-sm-block">All books</h1>
+<br>
+<table class="table table-dark table-bordered d-sm-table d-none">
+    <thead>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Details</th>
+    </thead>
+    <tbody>
+        {% for books in books %}
+        <tr>
+            <td scope="row">{{ books[0] }}</td>
+            <td>{{ books[1] }}</td>
+            <td>
+                {% if is_logged_in %}
+                <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for("view_book", id=books[0]) }}'">
+                    Details
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-primary" onclick="alert('Please login or register to view book details')">
+                    
+                </button>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<table class="table table-dark table-bordered d-sm-none d-block">
+    <tbody>
+        {% for books in books %}
+        <tr>
+            <td scope="row">{{ books[0] }}</td>
+            <td>{{ books[1] }}</td>
+            <td>
+                {% if is_logged_in %}
+                <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for("view_book", id=books[0]) }}'">
+                    Details
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-primary" onclick="alert('Please login or register to view book details')">
+                    Details
+                    Details
+                </button>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        {% else %}
+        <hr class="d-block d-sm-none" />
+        <h1 class="display-4 text-center d-none d-sm-block">No books available</h1>
+        {% endif %}
+    </div>
+    {% endblock %}

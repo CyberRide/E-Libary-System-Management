@@ -1,0 +1,26 @@
+{% extends 'withlogin.html' %}
+{% block title%}{{ book[1] }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Book Details</h1>
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <img src="{{url_for('static', filename='upload/Thumbnail/'+book[10]) }}" class="img-thumbnail" alt="Book Thumbnail">
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <h2>{{ book[1] }}</h2>
+            <p>Author: {{ book[2] }}</p>
+            <p>Publisher: {{ book[4]}}</p>
+            <p>Description: {{ book[3] }}</p>
+            <p>Book type: {{ book[6] }}</p>
+            <p>Date added: {{ book[8] }}</p>
+            <div class="text-center">
+                {% if book[9] == 1 %}
+                <a href="{{url_for('static', filename='upload/Document/'+book[7]) }}" class="btn btn-primary btn-lg" download>Download</a>
+                {% endif %}
+                <a href="{{ url_for('read_book', id=book[0]) }}" class="btn btn-success btn-lg">Read</a>                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

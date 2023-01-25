@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+
+     <meta charset='utf-8'>
+     <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+     <link rel="icon" href="{{ url_for('static',filename='user.png')}}">
+</head>
+<name>{% block name%}{% endblock %}</name>
+</head>
+
+<body
+     style="font-family: 'PT Sans', sans-serif; background-size: cover;">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+              <a class="navbar-brand" style="color:rgb(198, 156, 5)" href="/admin/dashboard">Admin</a>
+              <button class="navbar-toggler" type="button" style="color: rgb(198, 156, 5);"data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon" style="color: rgb(198, 156, 5)" ></span>
+              </button>
+              <div class="collapse navbar-collapse" style="color: rgb(198, 156, 5);" id="navbarNav">
+                      <ul class='navbar-nav ml-auto'>
+                      <li class="nav-item ">
+                          {% block nav %}{% endblock %}  
+                      </li>
+                    <li class='nav-item active'>
+                         <a class='nav-link' href='/add/books'>Books</a>
+                    </li>
+                    <li class='nav-item active'>
+                         <a class='nav-link' href='/add/video'>Videos</a>
+                    </li>
+                    <li class='nav-item active'>
+                         <a class='nav-link' href='/categories'>Categories</a>
+                    </li>
+                    <li class='nav-item active '>
+                         <a class='nav-link' href='/book-types'>Book-Type</a>
+                    </li>
+                    <li class='nav-item active'>
+                         <a class='nav-link' href='/report'>Report</a>
+                    </li>
+                    <li class='nav-item active '>
+                         <a class='nav-link' href='/profile'>Profile</a>
+                    </li>
+                    <li class='nav-item active'>
+                         <a class='nav-link' href='/admin/logout'>Logout</a>
+                    </li>
+               </ul>
+          </div>
+     </nav>
+     <div class="d-flex flex-column flex-fill" style="min-height: 100vh;">
+          <div class="container" style="color: black; flex: 1;">
+              {% block content %}{% endblock %}
+          </div>
+          <hr style="border: 5px solid white;border-radius: 5px;" />
+          <footer class="bg-dark text-white text-center py-3">
+              <p>&copy; {{ year }} - E-libary - Aptech</p>
+          </footer>
+      </div>
+
+      <script>
+          $(document).ready(function(){
+            $('.navbar-toggler').click(function(){
+              if($('.navbar-collapse').hasClass('show')){
+                $('.navbar-collapse').removeClass('show');
+              }
+              else{
+                $('.navbar-collapse').addClass('show');
+              }
+            });
+          });
+          </script>
+     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>
+     <script src="{{ url_for('static',filename='script.js')}}"></script>
+</body>
+
+</html>

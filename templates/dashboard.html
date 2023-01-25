@@ -1,0 +1,24 @@
+{% extends 'withlogin.html' %}
+{% block title%}Dashboard{% endblock %}
+{% block content %}
+
+<section class="py-5">
+     <div class="container-fluid">
+          <div class="row">
+              {% for book in books %}
+              <div class="col-md-3 col-sm-6">
+                  <div class="card-custom">
+                      <img src="{{url_for('static', filename='upload/Thumbnail/'+book[10]) }}" alt="Book thumbnail" class="card-img-top-custom">
+                      <div class="card-body-custom">
+                          <h5 class="card-title-custom">{{ book[1] }}</h5>
+                          <a href="{{ url_for('view_book', id=book[0]) }}" class="btn-custom">View</a>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+      
+</section>
+
+{% endblock %}
